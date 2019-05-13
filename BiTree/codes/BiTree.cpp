@@ -2,6 +2,9 @@
 #include "BiTree.h"
 #include<iostream>
 #include <ctime>
+#ifndef nullptr
+#define nullptr 0 //define nullptr NULL
+#endif
 using namespace std;
 
 /*
