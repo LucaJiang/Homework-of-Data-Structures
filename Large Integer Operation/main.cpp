@@ -1,17 +1,17 @@
-//ç¨‹åºè¯´æ˜ï¼š2019-03-11
-//å¤§æ•´æ•°åŸºæœ¬è¿ç®—ï¼›
-//æœ€åä¿®æ”¹æ—¶é—´ï¼š2019-03-31
+//³ÌĞòËµÃ÷£º2019-03-11
+//´óÕûÊı»ù±¾ÔËËã£»
+//×îºóĞŞ¸ÄÊ±¼ä£º2019-07-13
 #include <iostream>
-#include "SeqList.cpp"           //å¼•ç”¨é¡ºåºè¡¨çš„ç±»å£°æ˜å’Œå®šä¹‰  
-#include "Operation.h"       // å››åˆ™è¿ç®— é‡è½½è¾“å…¥è¾“å‡ºæµ
+#include "SeqList.cpp"           //ÒıÓÃË³Ğò±íµÄÀàÉùÃ÷ºÍ¶¨Òå  
+#include "Operation.h"       // ËÄÔòÔËËã ÖØÔØÊäÈëÊä³öÁ÷
 
 using namespace std;
 //const int MaxSize = 100;  in "SeqList.h"
 
-void problem3()
+void mainfunction() 
 {
 	myINPUT myinput;
-	cout << " ";
+	cout << ">";
 	cin >> myinput;
 	cout << "=";
 	switch (myinput.op)
@@ -43,32 +43,28 @@ void problem3()
 	}
 	}
 
-	cout << "è¾“å…¥'+'ç»§ç»­ï¼Œè¾“å…¥'-'é€€å‡º\n";
+	cout << "ÊäÈë'+'¼ÌĞø£¬ÊäÈë'-'ÍË³ö\n";
 	char isExit;
 	cin >> isExit;
 	if (isExit == '+')
-	{
-		problem3();
-	}
+		mainfunction(); //continue to calculate
 	else
 		return;
-	//	cout << myinput.x + myinput.y;
 }
 
-int main()
+int main() 
 {
-	cout << "å¤§æ•´æ•°å››åˆ™è¿ç®—\næ¼”ç¤ºç¨‹åº\n";
-	cout << "è¾“å…¥ï¼š\n 123456789/5456432\n";
-	cout << "è¾“å‡ºï¼š\n=";
+	cout << "´óÕûÊıËÄÔòÔËËã\nÑİÊ¾³ÌĞò\n";
+	cout << "ÊäÈë£º\n 123456789/5456432\n";
+	cout << "Êä³ö£º\n=";
 	int a[9] = { 1,2,3,4,5,6,7,8,9 };
 	int b[7] = { 5,4,5,6,4,3,2 };
 	SeqList<int> ary(a, 9);
 	SeqList<int> bry(b, 7);
-	cout << ary / bry << endl;
-	cout << "ç°åœ¨ï¼Œå¼€å§‹ä½ çš„è¾“å…¥ï¼\n\n";
-	problem3();
-
-	cout << "é€€å‡º\n";
+	cout<<ary / bry<<endl;
+	cout << "ÏÖÔÚ£¬¿ªÊ¼ÄãµÄÊäÈë£¡\n\n";
+	mainfunction();
+	cout << "ÍË³ö\n";
 	system("pause");
 	return 0;
 }

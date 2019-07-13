@@ -1,26 +1,26 @@
 #pragma once
 #include <iostream>
-const int MaxSize = 1000;          //1000åªæ˜¯ç¤ºä¾‹æ€§çš„æ•°æ®ï¼Œå¯ä»¥æ ¹æ®å®é™…é—®é¢˜å…·ä½“å®šä¹‰
+const int MaxSize = 1000;          //1000Ö»ÊÇÊ¾ÀıĞÔµÄÊı¾İ£¬¿ÉÒÔ¸ù¾İÊµ¼ÊÎÊÌâ¾ßÌå¶¨Òå
 
-template <class DataType>        //å®šä¹‰æ¨¡æ¿ç±»SeqList
+template <class T>        //¶¨ÒåÄ£°åÀàSeqList
 class SeqList
 {
 public:
-	//æ„é€  ææ„
-	SeqList() { length = 0; sign = 0; }            //æ— å‚æ„é€ å‡½æ•°ï¼Œå»ºç«‹ä¸€ä¸ªç©ºçš„é¡ºåºè¡¨
-	SeqList(DataType a[], int n);       //æœ‰å‚æ„é€ å‡½æ•°ï¼Œå»ºç«‹ä¸€ä¸ªé•¿åº¦ä¸ºnçš„é¡ºåºè¡¨
+	//¹¹Ôì Îö¹¹
+	SeqList() { length = 0; sign = 0; }            //ÎŞ²Î¹¹Ôìº¯Êı£¬½¨Á¢Ò»¸ö¿ÕµÄË³Ğò±í
+	SeqList(T a[], int n);       //ÓĞ²Î¹¹Ôìº¯Êı£¬½¨Á¢Ò»¸ö³¤¶ÈÎªnµÄË³Ğò±í
 	SeqList(SeqList&p);
-	~SeqList() { }                   //ææ„å‡½æ•°ä¸ºç©º
+	~SeqList() { }                   //Îö¹¹º¯ÊıÎª¿Õ
 
 	void CheckIndex(int Index) const;
-	int Length() const { return length; }        //æ±‚çº¿æ€§è¡¨çš„é•¿åº¦
-	void Change(int i, DataType y);         //æŠŠç¬¬iä½æ”¹ä¸ºy
-	void Insert(int i, const DataType& x);       //æ’å…¥æ“ä½œï¼Œåœ¨çº¿æ€§è¡¨ä¸­ç¬¬iä¸ªä½ç½®æ’å…¥å€¼ä¸ºxçš„å…ƒç´ 
-	DataType Delete(int i);              //åˆ é™¤æ“ä½œï¼Œåˆ é™¤çº¿æ€§è¡¨çš„ç¬¬iä¸ªå…ƒç´ 
-	void PrintList() const;                     //éå†æ“ä½œï¼ŒæŒ‰åºå·ä¾æ¬¡è¾“å‡ºå„å…ƒç´ 
+	int Length() const { return length; }        //ÇóÏßĞÔ±íµÄ³¤¶È
+	void Change(int i, T y);         //°ÑµÚiÎ»¸ÄÎªy
+	void Insert(int i, const T& x);       //²åÈë²Ù×÷£¬ÔÚÏßĞÔ±íÖĞµÚi¸öÎ»ÖÃ²åÈëÖµÎªxµÄÔªËØ
+	T Delete(int i);              //É¾³ı²Ù×÷£¬É¾³ıÏßĞÔ±íµÄµÚi¸öÔªËØ
+	void PrintList() const;                     //±éÀú²Ù×÷£¬°´ĞòºÅÒÀ´ÎÊä³ö¸÷ÔªËØ
 
 	//Adtional
-	void OverTurn(int h, int r);  //ç¿»è½¬
+	void OverTurn(int h, int r);  //·­×ª
 	void Reserve() { OverTurn(1, length); }
 	friend SeqList<int> myAdd(const SeqList<int>& x, const SeqList<int>& y);
 	friend SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y);
@@ -36,9 +36,9 @@ public:
 	SeqList<int> operator *(const SeqList<int>&x) const;
 	struct StrofDiv operator /(const SeqList<int>&x) const;
 
-	DataType data[MaxSize];           //å­˜æ”¾æ•°æ®å…ƒç´ çš„æ•°ç»„
-	int length;                        //çº¿æ€§è¡¨çš„é•¿åº¦
-	bool sign; //+:0; -:1 ç”¨äºè§£å†³å‡æ³•ç¬¦å·é—®é¢˜
+	T data[MaxSize];           //´æ·ÅÊı¾İÔªËØµÄÊı×é
+	int length;                        //ÏßĞÔ±íµÄ³¤¶È
+	bool sign; //+:0; -:1 ÓÃÓÚ½â¾ö¼õ·¨·ûºÅÎÊÌâ
 };
 
 // store ans of /
@@ -59,6 +59,6 @@ struct myINPUT
 	SeqList<int>x;
 	SeqList<int>y;
 	char op;  //operation +-*/
-	myINPUT() {}
-	myINPUT(const myINPUT&p) { *this = p; }
+	myINPUT(){}
+	myINPUT(const myINPUT&p){ *this = p; }
 };

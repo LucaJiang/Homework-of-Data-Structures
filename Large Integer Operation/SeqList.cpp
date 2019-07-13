@@ -1,12 +1,12 @@
 // cpp of SeqList
 // overload operator +-*/
+//Last Modification Time: 2019-07-13
 #include "SeqList.h"
 #include <algorithm>
-
 using namespace std;
 
-template <class DataType>
-SeqList<DataType> ::SeqList(DataType a[], int n)
+template <class T>
+SeqList<T> ::SeqList(T a[], int n)
 {
 	if (n > MaxSize) throw "Illegal parameter value";
 	for (int i = 0; i < n; i++)
@@ -15,17 +15,17 @@ SeqList<DataType> ::SeqList(DataType a[], int n)
 	sign = 0;
 }
 
-template<class DataType>
-SeqList<DataType>::SeqList(SeqList & p)
+template<class T>
+SeqList<T>::SeqList(SeqList & p)
 {
-	length = p.length;
+	this->length = p.length; 
 	for (int i = 0; i < length; i++)
-		data[i] = p.data[i];
-	sign = p.sign;
+		this->data[i] = p.data[i];
+	this->sign = p.sign;
 }
 
-template<class DataType>
-void SeqList<DataType>::CheckIndex(int Index) const
+template<class T>
+void SeqList<T>::CheckIndex(int Index) const
 {//Make sure the Index is valid. Index 1 : length
 	if (Index < 1 || Index > length)
 	{
@@ -34,15 +34,15 @@ void SeqList<DataType>::CheckIndex(int Index) const
 	}
 }
 
-template<class DataType>
-void SeqList<DataType>::Change(int i, DataType y)
-{
+template<class T>
+void SeqList<T>::Change(int i, T y)
+{//change data[i-1] to y
 	CheckIndex(i);
 	data[i - 1] = y;
 }
 
-template <class DataType>
-void SeqList<DataType> ::Insert(int i, const DataType& x)
+template <class T>
+void SeqList<T> ::Insert(int i, const T& x)
 {
 	if (length >= MaxSize) throw "overflow";
 	if (i == length + 1)
@@ -52,38 +52,38 @@ void SeqList<DataType> ::Insert(int i, const DataType& x)
 		return;
 	}
 	else CheckIndex(i);
-
+	
 	if (i <= length)
 		for (int j = length; j >= i; j--)
-			data[j] = data[j - 1];             //æ³¨æ„ç¬¬jä¸ªå…ƒç´ å­˜åœ¨æ•°ç»„ä¸‹æ ‡ä¸ºj-1å¤„
+			data[j] = data[j - 1];             //×¢ÒâµÚj¸öÔªËØ´æÔÚÊı×éÏÂ±êÎªj-1´¦
 	data[i - 1] = x;
 	length++;
 }
 
-template <class DataType>
-DataType SeqList<DataType> ::Delete(int i)
+template <class T>
+T SeqList<T> ::Delete(int i)
 {
 	if (length == 0) throw "underflow";
 	CheckIndex(i);
-	DataType x = data[i - 1];              //å–å‡ºä½ç½®içš„å…ƒç´ 
+	T x = data[i - 1];              //È¡³öÎ»ÖÃiµÄÔªËØ
 	for (int j = i; j < length; j++)
-		data[j - 1] = data[j];        //æ³¨æ„æ­¤å¤„jå·²ç»æ˜¯å…ƒç´ æ‰€åœ¨çš„æ•°ç»„ä¸‹æ ‡
+		data[j - 1] = data[j];        //×¢Òâ´Ë´¦jÒÑ¾­ÊÇÔªËØËùÔÚµÄÊı×éÏÂ±ê
 	length--;
 	return x;
 }
 
-template <class DataType>
-void SeqList<DataType> ::PrintList() const
+template <class T>
+void SeqList<T> ::PrintList() const
 {
 	if (sign == 1)
-		cout << "-";
+		cout << "-"; //negtive num
 	for (int i = 0; i < length; i++)
-		cout << data[i];                   //ä¾æ¬¡è¾“å‡ºçº¿æ€§è¡¨çš„å…ƒç´ å€¼
+		cout<< data[i];                   //ÒÀ´ÎÊä³öÏßĞÔ±íµÄÔªËØÖµ
 	//cout << endl;
 }
 
-template<class DataType>
-void SeqList<DataType>::OverTurn(int h, int r)
+template<class T>
+void SeqList<T>::OverTurn(int h, int r)
 {//head, rear
 	CheckIndex(r);
 	CheckIndex(h);
@@ -95,51 +95,35 @@ void SeqList<DataType>::OverTurn(int h, int r)
 			swap(data[i + h], data[r - i]);
 		}
 	}
-
+	
 }
 
-template<class DataType>
-SeqList<int> SeqList<DataType>::operator+(const SeqList<int>& p) const
+template<class T>
+SeqList<int> SeqList<T>::operator+(const SeqList<int>& p) const
 {
-	SeqList<int> x1;
-	//x1.data = this->data;
-	////(this->data, this->length);
-	//x1 = myAdd(x1, x);
-	//return x1;
-	x1.length = length;
-	for (int i = 0; i < length; i++)
-		x1.data[i] = data[i];
-	x1.sign = sign;
-	x1 = myAdd(x1, p);
-	return x1;
+	SeqList<int> x;
+	x = myAdd(p, *this);
+	return x;
 }
 
-template<class DataType>
-SeqList<int> SeqList<DataType>::operator-(const SeqList<int>& p) const
+template<class T>
+SeqList<int> SeqList<T>::operator-(const SeqList<int>& p) const
 {
-	SeqList<int> x1;
-	x1.length = length;
-	for (int i = 0; i < length; i++)
-		x1.data[i] = data[i];
-	x1.sign = sign;
-	x1 = mySub(x1, p);
-	return x1;
+	SeqList<int> x;
+	x = mySub(*this, p);
+	return x;
 }
 
-template<class DataType>
-SeqList<int> SeqList<DataType>::operator*(const SeqList<int>& p) const
+template<class T>
+SeqList<int> SeqList<T>::operator*(const SeqList<int>& p) const
 {
-	SeqList<int> x1;
-	x1.length = length;
-	for (int i = 0; i < length; i++)
-		x1.data[i] = data[i];
-	x1.sign = sign;
-	x1 = myMul(x1, p);
-	return x1;
+	SeqList<int> x;
+	x = myMul(*this, p);
+	return x;
 }
 
-template<class DataType>
-StrofDiv SeqList<DataType>::operator/(const SeqList<int>& p) const
+template<class T>
+StrofDiv SeqList<T>::operator/(const SeqList<int>& p) const
 {
 	return myDiv(*this, p);
 }

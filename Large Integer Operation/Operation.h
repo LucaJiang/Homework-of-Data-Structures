@@ -24,26 +24,29 @@ int Compare(const SeqList<int>& x, const SeqList<int>& y)
 
 SeqList<int> myAdd(const SeqList<int>& x, const SeqList<int>& y)
 {// +
-	SeqList<int> C; //å­˜å‚¨ç­”æ¡ˆ C = A + B
-	int flag = 0;  //è¿›ä½æ ‡å¿—
-	int i = 0;    //ä½æ•°
+	SeqList<int> C; //´æ´¢´ğ°¸ C = A + B
+	int flag = 0;  //½øÎ»±êÖ¾
+	int i = 0;    //Î»Êı
 	SeqList<int> A;
-	A = x;
+	A= x;
 	SeqList<int> B;
 	B = y;
 	int m = A.Length(); int n = B.Length();
 	A.Reserve(); B.Reserve();
-	while (i < m&&i < n) {
+	while (i < m&&i < n) 
+	{
 		C.data[i] = (A.data[i] + B.data[i] + flag) % 10;
 		flag = (A.data[i] + B.data[i] + flag) / 10;
 		i++;
 	}
-	while (i < m) {
+	while (i < m) 
+	{
 		C.data[i] = (A.data[i] + flag) % 10;
 		flag = (A.data[i] + flag) / 10;
 		i++;
 	}
-	while (i < n) {
+	while (i < n) 
+	{
 		C.data[i] = (B.data[i] + flag) % 10;
 		flag = (B.data[i] + flag) / 10;
 		i++;
@@ -56,8 +59,8 @@ SeqList<int> myAdd(const SeqList<int>& x, const SeqList<int>& y)
 
 SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y)
 {// -
-	int flag = 0;  //è¿›ä½æ ‡å¿—
-	int i = 0;    //ä½æ•°
+	int flag = 0;  //½øÎ»±êÖ¾
+	int i = 0;    //Î»Êı
 	bool negflag = false;
 	SeqList<int> A, B;//make sure A>B
 	if (Compare(x, y) == -1)
@@ -65,7 +68,7 @@ SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y)
 		int ZERO[1] = { 0 };
 		SeqList<int>zero(ZERO, 1);
 		return zero;
-		//		throw"Illegal Parameter";
+//		throw"Illegal Parameter";
 	}
 	else if (Compare(x, y) == 0)
 	{
@@ -74,7 +77,7 @@ SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y)
 	}
 	else
 	{
-		A = x;
+		A = x; 
 		B = y;
 	}
 	A.Reserve(); B.Reserve();
@@ -92,7 +95,7 @@ SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y)
 			flag = 0;
 		}
 	}
-	if (flag == -1)
+	if (flag==-1)
 	{
 		A.data[i]--;
 	}
@@ -100,7 +103,7 @@ SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y)
 	{
 		if (A.data[A.length - 1] == 0)
 		{
-			//			cout << "d\n";
+//			cout << "d\n";
 			A.Delete(A.length);
 		}
 		else break;
@@ -111,20 +114,20 @@ SeqList<int> mySub(const SeqList<int>& x, const SeqList<int>& y)
 	return A;
 }
 
-SeqList<int> Multiply_x(int x, SeqList<int> A)
+SeqList<int> Multiply_x(int x, SeqList<int> A) 
 {//C=x*A  ATT: A had been reserve! return reserve C
-	int flag = 0;  //è¿›ä½æ ‡å¿—
-	int i = 0;    //ä½æ•°
+	int flag = 0;  //½øÎ»±êÖ¾
+	int i = 0;    //Î»Êı
 	int m = A.Length();
 	SeqList<int> C;
-	while (i < m)
+	while (i < m) 
 	{
 		C.data[i] = (x*A.data[i] + flag) % 10;
 		flag = (x*A.data[i] + flag) / 10;
 		i++;
 	}
 	C.length = m;
-	if (flag > 0)
+	if (flag > 0) 
 	{
 		C.length = m + 1;
 		C.data[m] = flag;
@@ -147,19 +150,19 @@ SeqList<int> myMul(const SeqList<int>& x, const SeqList<int>& y)
 		B = temp;
 	}
 
-	int flag = 0;  //è¿›ä½æ ‡å¿—
-	int i = 0;    //ä½æ•°
+	int flag = 0;  //½øÎ»±êÖ¾
+	int i = 0;    //Î»Êı
 	A.Reserve();
 	B.Reserve();
-	SeqList<int> C;  //å­˜å‚¨ B.data[i]*A
-	SeqList<int> D;  //å­˜å‚¨ä¹˜æ³•ç»“æœ 
+	SeqList<int> C;  //´æ´¢ B.data[i]*A
+	SeqList<int> D;  //´æ´¢³Ë·¨½á¹û 
 	int n = B.Length();
-	while (i < n)
+	while (i < n) 
 	{
 		C = Multiply_x(B.data[i], A);   //C=B.data[i]*A
 		if (i == 0)
 			D = C;
-		else
+		else 
 		{
 			for (int j = i; j > 0; j--)
 				C.Insert(1, 0);
@@ -170,8 +173,6 @@ SeqList<int> myMul(const SeqList<int>& x, const SeqList<int>& y)
 		}
 		i++;
 	}
-	A.Reserve();
-	B.Reserve();
 	D.Reserve();
 	return D;
 }
@@ -194,7 +195,7 @@ SeqList<int> div2(SeqList<int>& x)
 
 struct StrofDiv myDiv(const SeqList<int>& x, const SeqList<int>& y)
 {// x/y
-	//äºŒåˆ†æ³•
+	//¶ş·Ö·¨
 	//x>y
 	SeqList<int>A;
 	A = x;
@@ -203,7 +204,7 @@ struct StrofDiv myDiv(const SeqList<int>& x, const SeqList<int>& y)
 
 	if (Compare(A, B) == 0)
 	{
-		//		throw"Illegal Parameter";
+//		throw"Illegal Parameter";
 		int ZERO[1] = { 0 };
 		SeqList<int>zero(ZERO, 1);
 		StrofDiv ANS;
@@ -214,11 +215,11 @@ struct StrofDiv myDiv(const SeqList<int>& x, const SeqList<int>& y)
 	if (B.length == 1 && B.data[0] == 0)
 	{
 		cout << "Integer Division by Zero";
-		//		throw"Integer Division by Zero";
+//		throw"Integer Division by Zero";
 		StrofDiv re;
 		return re;
 	}
-	//æ„é€ äºŒåˆ†æ³•ä¸¤ä¸ªç«¯ç‚¹
+	//¹¹Ôì¶ş·Ö·¨Á½¸ö¶Ëµã
 	int n = A.length - B.length;
 	int arrayC1[MaxSize];
 	arrayC1[0] = { 1 };
@@ -230,16 +231,16 @@ struct StrofDiv myDiv(const SeqList<int>& x, const SeqList<int>& y)
 		arrayC2[i] = 0;
 	}
 	SeqList<int> C1(arrayC1, n);
-	SeqList<int> C2(arrayC2, n + 2); //äºŒåˆ†æ³•çš„ä¸¤ä¸ªç«¯ç‚¹
-	SeqList<int> C; //äºŒåˆ†æ³•ä¸­ç‚¹,çŒœæµ‹ç­”æ¡ˆ
-	SeqList<int> oldC; //åˆ¤æ–­Cæ˜¯å¦æ”¹å˜
-	SeqList<int> D; //å’ŒAæ¯”è¾ƒ
+	SeqList<int> C2(arrayC2, n + 2); //¶ş·Ö·¨µÄÁ½¸ö¶Ëµã
+	SeqList<int> C; //¶ş·Ö·¨ÖĞµã,²Â²â´ğ°¸
+	SeqList<int> oldC; //ÅĞ¶ÏCÊÇ·ñ¸Ä±ä
+	SeqList<int> D; //ºÍA±È½Ï
 
 	while (true)
 	{
 		oldC = C;
 		C = C1 + C2;
-		C = div2(C); //äºŒåˆ†æ³•ä¸­ç‚¹
+		C = div2(C); //¶ş·Ö·¨ÖĞµã
 		if (Compare(oldC, C) == -1) //no change C
 			break;
 		D = C * B;
@@ -275,8 +276,8 @@ struct StrofDiv myDiv(const SeqList<int>& x, const SeqList<int>& y)
 }
 
 // to print ans of + - *
-template <class DataType>
-ostream& operator<<(ostream& out, const SeqList<DataType>& x)
+template <class T>
+ostream& operator<<(ostream& out, const SeqList<T>& x)
 {
 	x.PrintList(); return out;
 }
