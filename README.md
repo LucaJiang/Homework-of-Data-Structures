@@ -51,7 +51,7 @@
 
 基于Apache License!
 
-更多信息请阅读[LICENSE](LICENSE.txt).
+更多信息请阅读[LICENSE](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/LICENSE).
 
 
 ## 致谢
