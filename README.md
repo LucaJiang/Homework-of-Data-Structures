@@ -42,11 +42,11 @@
 
 
 ## 作业目录
-** [大整数四则运算](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Large%20Integer%20Operation)
-**[约瑟夫环](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/Josephus%20Ring.cpp)
-**[二叉树](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/BiTree/codes)
-**[引用与指针](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/referencePointer.cpp)
-**[图](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Graph)
+* [大整数四则运算](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Large%20Integer%20Operation)
+* [约瑟夫环](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/Josephus%20Ring.cpp)
+* [二叉树](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/BiTree/codes)
+* [引用与指针](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/referencePointer.cpp)
+* [图](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Graph)
 * [排序](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Sort)
 
 
