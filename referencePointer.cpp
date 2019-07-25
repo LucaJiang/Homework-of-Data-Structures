@@ -1,3 +1,5 @@
+//这个程序能帮助辨析几个很重要的概念
+//教材有一些无法正常运行的程序就是忽略了这个细节
 #include<iostream>
 using namespace std;
 
