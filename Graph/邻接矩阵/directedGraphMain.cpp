@@ -1,6 +1,6 @@
-//ÊµÑé°Ë2019-05-20 ÊµÑé¾Å2019-05-27 ÊµÑéÊ®2019-06-03
-//»ùÓÚÓĞÏòÍ¼(ÓĞÈ¨ÖØ)µÄÁÚ½Ó¾ØÕóÊµÏÖÍ¼µÄ¸÷ÖÖËã·¨;
-//×îºóĞŞ¸Ä2019-06-06
+//
+//åŸºäºæœ‰å‘å›¾(æœ‰æƒé‡)çš„é‚»æ¥çŸ©é˜µå®ç°å›¾çš„å„ç§ç®—æ³•;
+//æœ€åä¿®æ”¹2019-06-06
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -52,31 +52,27 @@ int main()
 	}
 	directedGraph<string, int>mygraph(numV, name, arc);
 	fin.close();
-	//------------------------- µÚÒ»Ìâ------------------------------
-// 	if(!mygraph.isCity())
-// 	{
-// 		mygraph.Info();
-// 		cout << "DFS:";
-// 		mygraph.Traverse(0, 1);
-// 		cout << "BFS:";
-// 		mygraph.Traverse(0, 0);
-// 		cout << "D&BFS:";
-// 		mygraph.Traverse(0, 0.4);
+ 	if(!mygraph.isCity())
+ 	{
+		mygraph.Info();
+		cout << "DFS:";
+ 		mygraph.Traverse(0, 1);
+ 		cout << "BFS:";
+ 		mygraph.Traverse(0, 0);
+ 		cout << "D&BFS:";
+ 		mygraph.Traverse(0, 0.4);
 // 		cout << "DFS_Tree:\n";
-// 		mygraph.DFS_T(0);
+		mygraph.DFS_T(0);
 // 	}
-// 	//--------------------------µÚ¶şÌâ-----------------------------
-// 	cout << "Prim:\n";
-// 	mygraph.Prim();
-// 	cout << "Kruskal:\n";
-// 	mygraph.Kruskal();
-// 	cout << "another method of MST\n";
+ 	cout << "Prim:\n";
+ 	mygraph.Prim();
+	cout << "Kruskal:\n";
+ 	mygraph.Kruskal();
+ 	cout << "another method of MST\n";
 // 	mygraph.BreakCycle();
-// 	//ÉÏÃæÕâ¸öº¯Êı°ÑÁÚ½Ó¾ØÕó¸ÄÎª×îĞ¡Éú³ÉÊ÷µÄÁÚ½Ó¾ØÕó
-// 	//--------------------------µÚÈıÌâ-------------------------------
+// 	//ä¸Šé¢è¿™ä¸ªå‡½æ•°æŠŠé‚»æ¥çŸ©é˜µæ”¹ä¸ºæœ€å°ç”Ÿæˆæ ‘çš„é‚»æ¥çŸ©é˜µ
 // 	cout << "Approximate TSP:\n";
 // 	mygraph.Traverse(0, 1);
-//------------------------------ÊµÑéÊ®µÚÒ»Ìâ--------------------------
 	cout << "Dijkstra:\n";
 	mygraph.Dijkstra(1);
 	cout << "\nFloyd:\n";
