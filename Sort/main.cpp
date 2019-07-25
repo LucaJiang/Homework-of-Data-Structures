@@ -1,6 +1,5 @@
-//ÊµÑéÊ®Ò»:2019-06-17
-//¸ø¶¨Êı¾İÎÄ¼ş:Êı¾İ½á¹¹ÓëËã·¨ÊµÑéÑ§ÉúÃûµ¥.xls, ÀûÓÃÅÅĞòËã·¨£¬ÊµÏÖ¶Ô¸÷×Ö¶Î·Ö±ğÅÅĞò¡£
-//×îºóĞŞ¸Ä:2019-06-19
+//ç»™å®šæ•°æ®æ–‡ä»¶,åˆ©ç”¨æ’åºç®—æ³•ï¼Œå®ç°å¯¹å„å­—æ®µåˆ†åˆ«æ’åºã€‚
+//æœ€åä¿®æ”¹:2019-06-19
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -103,9 +102,9 @@ int main()
 // 			cout << inputstu.id<<"  " << inputstu.name<<"  " << inputstu.gender<<"  "
 // 				<< inputstu.school << inputstu.grade_department<<"*" << inputstu.class_ <<"*"<< endl;
 		}
-		cout << "Êı¾İÂ¼Èë³É¹¦\n";
+		cout << "æ•°æ®å½•å…¥æˆåŠŸ\n";
 	}
-	cout << "Ô­Ê¼Êı¾İ:\n";
+	cout << "åŸå§‹æ•°æ®:\n";
 	DataStr.Printcourse();
 
 	CompareFunction<student> cmp[9];
@@ -114,8 +113,8 @@ int main()
 
 	while (true)
 	{
-		cout << "ÊäÈëÅÅĞò×Ö¶Î: Ñ§ºÅ ĞÕÃû ĞÔ±ğ ÔºÏµ Äê¼¶×¨Òµ °à¼¶£» »òÊäÈë ÍË³ö\n";
-//		cout << "ÅÅĞò×Ö¶Î:";
+		cout << "è¾“å…¥æ’åºå­—æ®µ: å­¦å· å§“å æ€§åˆ« é™¢ç³» å¹´çº§ä¸“ä¸š ç­çº§ï¼› æˆ–è¾“å…¥ é€€å‡º\n";
+//		cout << "æ’åºå­—æ®µ:";
 		string aim;
 		cin >> aim;
 		int choose = (-(int)aim.at(1)) % 14;
@@ -141,7 +140,7 @@ int main()
 
 //		DataStr.Printcourse();
 	}
-	cout << "³É¹¦ÍË³ö!\n";
+	cout << "æˆåŠŸé€€å‡º!\n";
 	system("pause");
 	return 0;
 }
