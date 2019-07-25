@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <stdlib.h>
 #include <ctime>
-#include <random>
 //const int MAXV; in directed graph.h
 using namespace std;
 
@@ -307,7 +306,7 @@ int directedGraph<T, E>::FindRoot(int parent[], int v)
 
 template<class T, class E>
 void directedGraph<T, E>::BreakCycle()
-{//undirectedG ÆÆÈ¦·¨  arc->MST_arc !!!!!!
+{//undirectedG ç ´åœˆæ³•  arc->MST_arc !!!!!!
 	//init
 	struct visitV
 	{
@@ -318,11 +317,6 @@ void directedGraph<T, E>::BreakCycle()
 	int top = -1;
 	int stack[MAXV];//id of vertex
 	int count = numE - numV + 1;
-// 	E arc_copy[MAXV][MAXV];
-// 	for (int i = 0; i < MAXV; i++)
-// 		for (int j = 0; j < MAXV; j++)
-// 			arc_copy[i][j] = arc[i][j];
-
 	//visit first vertex
 	stack[++top] = 0;
 	visitV[0].parent = -1;//be careful this
@@ -417,8 +411,8 @@ void directedGraph<T, E>::Dijkstra(int v)
 	while (num < numV)
 	{
 		int k = 0;
-		for (int i = 0; i < numV; i++) //ÔÚdistÖĞ²éÕÒ×îĞ¡ÔªËØ
-			//ÒÔÏÂĞĞ¿Î±¾´úÂë£ºif (dist[i] && dist[i] < dist[k]) ´íÎó
+		for (int i = 0; i < numV; i++) //åœ¨distä¸­æŸ¥æ‰¾æœ€å°å…ƒç´ 
+			//ä»¥ä¸‹è¡Œè¯¾æœ¬ä»£ç ï¼šif (dist[i] && dist[i] < dist[k]) é”™è¯¯
 			if (dist[i] && (!dist[k] || dist[i] < dist[k]))
 				k = i;
 		if (dist[k] != INF)
@@ -427,20 +421,20 @@ void directedGraph<T, E>::Dijkstra(int v)
 			cout << "Can not find road to " << nameV[k] << endl;
 		s[num++] = k;
 		for (int i = 0; i < numV; i++)
-		{//¸üĞÂdist path
+		{//æ›´æ–°dist path
 			if (dist[i] > dist[k] + arc[k][i])
 			{ 
 				dist[i] = dist[k] + arc[k][i];
 				path[i] = path[k] + nameV[i];
 			}
 		}
-		dist[k] = 0;  //ÒÑÉú³ÉÖÕµã
+		dist[k] = 0;  //å·²ç”Ÿæˆç»ˆç‚¹
 	}
 }
 
 template<class T, class E>
 void directedGraph<T, E>::Floyd()
-{//reference: ´ó»°Êı¾İ½á¹¹
+{//reference: å¤§è¯æ•°æ®ç»“æ„
 	E dist[MAXV][MAXV];
 	int path[MAXV][MAXV];
 	//init
@@ -489,21 +483,9 @@ void directedGraph<T, E>::Floyd()
 }
 
 template<class T, class E>
-double directedGraph<T, E>::randd()
-{//Generates a random number in range [0, 1)
-	random_device rd;
-	mt19937 gen(rd());
-	return generate_canonical<double, 1>(gen);
-}
-
-template<class T, class E>
-double directedGraph<T, E>::rand_v1()
+double directedGraph<T, E>::rand()
 {
-	static unsigned int seed = 0;
-	seed = seed * seed + nameV[seed%numV] * 99;
-	srand((unsigned)time(NULL) + seed);
+	rng default;
+	srand((unsigned)time(NULL));
 	return (double)rand() / (RAND_MAX + 1.0);
-	//double i= (double)rand() / (RAND_MAX + 1.0);
-	//cout << i;
-	//return i;
 }
