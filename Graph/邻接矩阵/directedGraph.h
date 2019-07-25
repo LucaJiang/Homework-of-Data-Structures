@@ -32,8 +32,7 @@ public:
 	void Dijkstra(int v);
 	void Floyd();
 private:
-	double randd();
-	double rand_v1();
+	double rand();
 	int numV; //current num_vertices
 	int numE; //current num_edge
 	T nameV[MAXV]; //name of vertices
