@@ -7,8 +7,6 @@
 * [**介绍**](#介绍)
 * [**参考书目**](#参考书目)
 * [**作业目录**](#作业目录)
-  * [**1**](#1)
-  
 * [**License**](#License)
 * [**致谢**](#致谢)
 
@@ -17,13 +15,15 @@
 
 这门课程是sysu数院本科2017级数据结构,授课老师是黎培兴教授.本项目仅包括部分上机作业.
 
-收集整理目的在于为后来的同学提供一点参考,希望大家不要抄袭,代码查重是一件很容易的事情.
+收集整理目的在于为后来的同学提供一点参考,祝师弟师妹们能写出更优秀的代码.
 
-**同时希望大家可以积极分享自己的代码 
+希望大家不要抄袭,代码查重是一件很容易的事情.
+
+**同时希望大家可以积极分享自己的代码 ☺ **
 
 可以直接Pull requests,也可以联系我添加你的项目.
 
-**希望看到这里的各位吃水不忘挖井人,注册账号点个star再走可好!
+**希望看到这里的各位吃水不忘挖井人,注册账号点个star再走可好!**
 
 
 ## 参考书目
@@ -36,15 +36,24 @@
 
 进阶参考书:*数据结构,算法与应用(C++语言描述)*.萨特吉.萨尼.机械工业出版社
 
-高级参考书:*算法导论*
+高级参考书:*算法导论* 尽量看英文版
+
+
+## 作业目录
+* [大整数四则运算](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Large%20Integer%20Operation)
+* [约瑟夫环](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/Josephus%20Ring.cpp)
+* [二叉树](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/BiTree/codes)
+* [图](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Graph)
+* [排序](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Sort)
 
 
 ## License
 
-基于Apache License请勿抄袭!
+基于Apache License!
+
 更多信息请阅读[LICENSE](LICENSE.txt).
 
-## 致谢
-感谢
 
-我吃完饭回来继续写
+## 致谢
+特别感谢黎培兴老师的指导!
+
