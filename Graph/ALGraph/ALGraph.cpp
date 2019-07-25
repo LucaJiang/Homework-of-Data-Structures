@@ -1,19 +1,11 @@
 //graph.cpp
 #include<iostream>
-#include "ALGraph.h"//ÒıÈëÍ·ÎÄ¼ş
-
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼²»´æÔÚ
- *Êä    Èë£ºÎŞ
- *¹¦    ÄÜ£ºÍ¼µÄ³õÊ¼»¯
- *Êä    ³ö£ºÎŞ
- *ºóÖÃÌõ¼ş£ºµÃµ½Ò»¸öÓĞÏòÍ¼
- */
+#include "ALGraph.h"
 template <class T>
 ALGraph<T>::ALGraph(T a[], int n, int e, int arc[MaxSize][MaxSize])
 {
-	arcNum = e;                             //±ßÊı
-	vertexNum = n;                            //¶¥µãÊı
+	arcNum = e;                             //è¾¹æ•°
+	vertexNum = n;                            //é¡¶ç‚¹æ•°
 	int i;
 	for (i = 0; i < vertexNum; i++)
 	{
@@ -29,114 +21,37 @@ ALGraph<T>::ALGraph(T a[], int n, int e, int arc[MaxSize][MaxSize])
 			if (j != i && arc[i][j] != 0)
 			{
 				ArcNode *s = new ArcNode; 
-				s->adjvex = j;  //Éú³ÉÒ»¸ö±ß±í½áµãs
-				s->next = adjlist[i].firstedge;      //½«½áµãs²åÈëµ½½áµãiµÄ±ß±íµÄ±íÍ·  
+				s->adjvex = j;  //ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹s
+				s->next = adjlist[i].firstedge;      //å°†ç»“ç‚¹sæ’å…¥åˆ°ç»“ç‚¹içš„è¾¹è¡¨çš„è¡¨å¤´  
 				adjlist[i].firstedge = s;
 			}
 		}
 	}
 
-
-
-	//for (int k = 0; k < arcNum; k++)           //ÒÀ´ÎÊäÈëÃ¿Ò»Ìõ±ß£¬²¢ÔÚÏàÓ¦±ß±íÖĞ²åÈë½áµã
-	//{
-	//	cout << "ÇëÊäÈë±ßËùÒÀ¸½µÄÁ½¸ö¶¥µãµÄĞòºÅ";
-	//	cin >> i >> j;                         //ÊäÈë±ßËùÒÀ¸½µÄÁ½¸ö¶¥µãµÄĞòºÅ
-	//	ArcNode *s = new ArcNode; s->adjvex = j;  //Éú³ÉÒ»¸ö±ß±í½áµãs
-	//	s->next = adjlist[i].firstedge;      //½«½áµãs²åÈëµ½½áµãiµÄ±ß±íµÄ±íÍ·  
-	//	adjlist[i].firstedge = s;
-	//}
-	//InsertArc(0, 1);                   //²åÈë±ß
-	//InsertArc(0, 2);
-	//InsertArc(0, 3);
-	//InsertArc(1, 3);
-	//InsertArc(1, 4);
-	//InsertArc(2, 0);
-	//InsertArc(2, 4);
-	//InsertArc(3, 1);
-	//InsertArc(3, 4);
-	//InsertArc(4, 2);
-	//InsertArc(4, 3);
 }
-/*   Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *   Êä    Èë£ºÎŞ
- *   ¹¦    ÄÜ£ºÏú»ÙÍ¼
- *   Êä    ³ö£ºÎŞ
- *   ºóÖÃÌõ¼ş£ºÊÍ·ÅÍ¼ËùÕ¼ÓÃµÄ´æ´¢¿Õ¼ä
- */
+
 template <class T>
 ALGraph<T>::~ALGraph()
 {
 	for (int i = 0; i < vertexNum; i++)
 	{
 		ArcNode * p = adjlist[i].firstedge;
-		while (p != NULL)                                              //Ñ­»·É¾³ı
+		while (p != NULL)                                              //å¾ªç¯åˆ é™¤
 		{
 			adjlist[i].firstedge = p->next;
-			delete p;                                                 //ÊÍ·Å½áµã¿Õ¼ä
+			delete p;                                                 //é‡Šæ”¾ç»“ç‚¹ç©ºé—´
 			p = adjlist[i].firstedge;
 		}
 	}
 }
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º¶¥µãi
- *¹¦    ÄÜ£ºÊä³öÍ¼ÖĞ¶¥µãiµÄÊı¾İĞÅÏ¢
- *Êä    ³ö£ºÍ¼ÖĞ¶¥µãiµÄÊı¾İĞÅÏ¢
- *ºóÖÃÌõ¼ş£ºÍ¼±£³Ö²»±ä
- */
-template <class T>
-T ALGraph<T>::GetVex(int i)
-{
-	if (i > vertexNum || i < 0) throw "ÊäÈë¶¥µãµÄÎ»ÖÃ²»ÕıÈ·"; //¶¥µãi²»´æÔÚÔòÅ×³öÒì³£
-	return adjlist[i].vertex;                               //·µ»ØµÚi¸ö¶¥µãµÄÊı¾İÓò  
-}
 
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º¶¥µãi
- *¹¦    ÄÜ£º½«Í¼ÖĞ¶¥µãiµÄÊı¾İÓòÖÃÎªvalue
- *Êä    ³ö£ºÎŞ
- *ºóÖÃÌõ¼ş£ºÍ¼±£³Ö²»±ä
- */
-template <class T>
-void ALGraph<T>::PutVex(int i, T value)
-{
-	if (i > vertexNum || i < 0) throw "ÊäÈë¶¥µãµÄÎ»ÖÃ²»ÕıÈ·"; //¶¥µãi²»´æÔÚÔòÅ×³öÒì³£
-	adjlist[i].vertex = value;                              //µÚi¸ö¶¥µãµÄÊı¾İÓòÖÃÎªvalue
-}
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º¶¥µãvalue,Î»ÖÃi
- *¹¦    ÄÜ£ºÔÚÍ¼ÖĞiÎ»ÖÃ²åÈëÒ»¸ö¶¥µãname
- *Êä    ³ö£ºÈç¹û²åÈë²»³É¹¦£¬Å×³öÒì³£
- *ºóÖÃÌõ¼ş£ºÈç¹û²åÈë³É¹¦£¬Í¼ÖĞÔö¼ÓÁËÒ»¸ö¶¥µã
- */
-template <class T>
-void ALGraph<T>::InsertVex(int i, T value)
-{
-	if (i > vertexNum || i<0 || i>MaxSize) throw "ÊäÈë¶¥µãµÄÎ»ÖÃ²»ÕıÈ·"; //¶¥µãi²»´æÔÚÔòÅ×³öÒì³£
-	vertexNum++;                                            //¶¥µãÊı¼Ó1
-	VertexNode<T> tempvertex;
-	tempvertex.vertex = value;
-	tempvertex.firstedge = NULL;
-	adjlist[i] = tempvertex;  	                    //µÚi¸ö¶¥µãµÄÊı¾İÓòÖÃÎªvalue	
-}
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º¶¥µãi
- *¹¦    ÄÜ£ºÔÚÍ¼ÖĞÉ¾³ı¶¥µãi
- *Êä    ³ö£ºÈç¹ûÉ¾³ı²»³É¹¦£¬Å×³öÒì³£
- *ºóÖÃÌõ¼ş£ºÈç¹ûÉ¾³ı³É¹¦£¬Í¼ÖĞ¼õÉÙÁËÒ»¸ö¶¥µã,ÏàÓ¦¶¥µãËù½¨Á¢µÄ±ßÒ²ÏûÈ¥
- */
 template <class T>
 void ALGraph<T>::DeleteVex(int i)
 {
-	if (i<0 || i>MaxSize) throw "Î»ÖÃ";       //¶¥µãÊäÈë´íÎóÔòÅ×³öÒì³£
 	int k;
-	for (k = 0; k < vertexNum; k++)               //É¾µôÈë¶È±ß
+	for (k = 0; k < vertexNum; k++)               //åˆ æ‰å…¥åº¦è¾¹
 		if (k != i)	 DeleteArc(k, i);
-	ArcNode *s;                                //Éú³ÉÒ»¸ö±ß±í½áµãs
+	ArcNode *s;                                //ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹s
 	if (adjlist[i].firstedge != NULL)
 	{
 		ArcNode *s;
@@ -147,7 +62,7 @@ void ALGraph<T>::DeleteVex(int i)
 			p = s;
 			adjlist[i].firstedge->next = s->next;
 			s = s->next;
-			delete p;                        //É¾³ıp½áµã
+			delete p;                        //åˆ é™¤pç»“ç‚¹
 		}
 		s = adjlist[i].firstedge;
 		adjlist[i].firstedge = NULL;
@@ -155,107 +70,54 @@ void ALGraph<T>::DeleteVex(int i)
 	}
 	for (k = i; k < vertexNum; k++)
 	{
-		adjlist[k] = adjlist[k + 1];             //´æ´¢¶¥µãĞÅÏ¢       
+		adjlist[k] = adjlist[k + 1];             //å­˜å‚¨é¡¶ç‚¹ä¿¡æ¯       
 	}
-	vertexNum--;                             //¶¥µãÊı¼õ1
+	vertexNum--;                             //é¡¶ç‚¹æ•°å‡1
 	for (k = 0; k < vertexNum; k++)
 		if (adjlist[k].firstedge != NULL)
 		{
-			s = adjlist[k].firstedge;                //½«½áµãs²åÈëµ½½áµãiµÄ±ß±íµÄ±íÍ·
+			s = adjlist[k].firstedge;                //å°†ç»“ç‚¹sæ’å…¥åˆ°ç»“ç‚¹içš„è¾¹è¡¨çš„è¡¨å¤´
 			while (s != NULL)
 			{
-				if (s->adjvex > i)                  //ËÑË÷i½áµã
+				if (s->adjvex > i)                  //æœç´¢iç»“ç‚¹
 					s->adjvex--;
 				s = s->next;
 			}
 		}
 }
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º¶¥µãi¡¢j
- *¹¦    ÄÜ£ºÔÚÍ¼ÖĞ²åÈë¶¥µãi¡¢j¼°ÆäËùÒÀ¸½µÄ±ß
- *Êä    ³ö£ºÈç¹û²åÈë²»³É¹¦£¬Å×³öÒì³£
- *ºóÖÃÌõ¼ş£ºÈç¹û²åÈë³É¹¦£¬Í¼ÖĞÔö¼ÓÁËÒ»Ìõ±ß
- */
-template <class T>
-void ALGraph<T>::InsertArc(int i, int j)
-{
-	if (i > MaxSize || j > MaxSize) throw "Î»ÖÃ";//¶¥µãÊäÈë´íÎóÔòÅ×³öÒì³£
-	ArcNode *s = new ArcNode; s->adjvex = j;      //Éú³ÉÒ»¸ö±ß±í½áµãs
-	s->next = adjlist[i].firstedge;             //½«½áµãs²åÈëµ½½áµãiµÄ±ß±íµÄ±íÍ·  
-	adjlist[i].firstedge = s;
-}
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º¶¥µãi¡¢j
- *¹¦    ÄÜ£ºÔÚÍ¼ÖĞÉ¾³ı¶¥µãi¡¢j ÒÀ¸½µÄ±ß
- *Êä    ³ö£ºÈç¹ûÉ¾³ı²»³É¹¦£¬Å×³öÒì³£
- *ºóÖÃÌõ¼ş£ºÈç¹ûÉ¾³ı³É¹¦£¬Í¼ÖĞ¼õÉÙÁËÒ»Ìõ±ß
-*/
-template <class T>
-void ALGraph<T>::DeleteArc(int i, int j)
-{
-	if (i > MaxSize || j > MaxSize) throw "Î»ÖÃ";  //¶¥µãÊäÈë´íÎóÔòÅ×³öÒì³£
-	ArcNode *s;
-	ArcNode *tempnode;
-	s = adjlist[i].firstedge;
-	tempnode = adjlist[i].firstedge;
-	while (s != NULL && s->adjvex != j)
-	{
-		tempnode = s;
-		s = s->next;
-	}
-	if (s != NULL)
-	{
-		tempnode->next = s->next;
-		delete s;
-	}
-}
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º±éÀúµÄÆğÊ¼¶¥µãv
- *¹¦    ÄÜ£º´Ó¶¥µãv³ö·¢Éî¶ÈÓÅÏÈ±éÀúÍ¼
- *Êä    ³ö£ºÍ¼ÖĞ¶¥µãµÄÒ»¸öÏßĞÔÅÅÁĞ
- *ºóÖÃÌõ¼ş£ºÍ¼±£³Ö²»±ä
- */
+
 template <class T>
 void ALGraph<T>::DFSTraverse(int v)
 {
-	if (v > vertexNum) throw "Î»ÖÃ";                          //¶¥µãÊäÈë´íÎóÔòÅ×³öÒì³£
+	if (v > vertexNum) throw "ä½ç½®";                          //é¡¶ç‚¹è¾“å…¥é”™è¯¯åˆ™æŠ›å‡ºå¼‚å¸¸
 	ArcNode * p;
 	int j;
 	cout << adjlist[v].vertex << " ";
 	visited[v] = 1;
 	p = adjlist[v].firstedge;
-	while (p)                                                //ÒÀ´ÎËÑË÷¶¥µãvµÄÁÚ½Óµãj
+	while (p)                                                //ä¾æ¬¡æœç´¢é¡¶ç‚¹vçš„é‚»æ¥ç‚¹j
 	{
 		j = p->adjvex;
 		if (visited[j] == 0) DFSTraverse(j);
 		p = p->next;
 	}
 }
-/*
- *Ç°ÖÃÌõ¼ş£ºÍ¼ÒÑ´æÔÚ
- *Êä    Èë£º±éÀúµÄÆğÊ¼¶¥µãv
- *¹¦    ÄÜ£º´Ó¶¥µãv³ö·¢¹ã¶ÈÓÅÏÈ±éÀúÍ¼
- *Êä    ³ö£ºÍ¼ÖĞ¶¥µãµÄÒ»¸öÏßĞÔÅÅÁĞ
- *ºóÖÃÌõ¼ş£ºÍ¼±£³Ö²»±ä
- */
+
 template <class T>
 void ALGraph<T>::BFSTraverse(int v)
 {
-	if (v > vertexNum) throw "Î»ÖÃ";                           //¶¥µãÊäÈë´íÎóÔòÅ×³öÒì³£
+	if (v > vertexNum) throw "illegal input";                           //é¡¶ç‚¹è¾“å…¥é”™è¯¯åˆ™æŠ›å‡ºå¼‚å¸¸
 	int front, rear, j;
-	ArcNode * p;                                              //Éú³ÉÒ»¸ö±ß±í½áµãp
+	ArcNode * p;                                              //ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹p
 	int Q[MaxSize];
-	front = rear = -1;                                            //³õÊ¼»¯¶ÓÁĞ, ¼ÙÉè¶ÓÁĞ²ÉÓÃË³Ğò´æ´¢ÇÒ²»»á·¢ÉúÒç³ö
+	front = rear = -1;                                            //åˆå§‹åŒ–é˜Ÿåˆ—, å‡è®¾é˜Ÿåˆ—é‡‡ç”¨é¡ºåºå­˜å‚¨ä¸”ä¸ä¼šå‘ç”Ÿæº¢å‡º
 	cout << adjlist[v].vertex << " ";  
 	visited[v] = 1;
-	Q[++rear] = v; //±»·ÃÎÊ¶¥µãÈë¶Ó
+	Q[++rear] = v; //è¢«è®¿é—®é¡¶ç‚¹å…¥é˜Ÿ
 	while (front != rear)
 	{
 		v = Q[++front];
-		p = adjlist[v].firstedge;                                //±ß±íÖĞµÄ¹¤×÷Ö¸Õëp³õÊ¼»¯
+		p = adjlist[v].firstedge;                                //è¾¹è¡¨ä¸­çš„å·¥ä½œæŒ‡é’ˆpåˆå§‹åŒ–
 		while (p)
 		{
 			j = p->adjvex;
@@ -276,7 +138,7 @@ void ALGraph<T>::List2Matrix()
 	for (int i = 0; i < vertexNum; i++)
 		for (int j = 0; j < vertexNum; j++)
 			arc[i][j] = 0;
-	//ÊÂÊµÉÏ£¬×÷ÎªÎŞÏòÍ¼£¬Ö»ÓÃarcµÄÉÏÈı½Ç²¿·Ö¾ÍĞĞ
+	//äº‹å®ä¸Šï¼Œä½œä¸ºæ— å‘å›¾ï¼Œåªç”¨arcçš„ä¸Šä¸‰è§’éƒ¨åˆ†å°±è¡Œ
 	ArcNode*p;
 	for (int i = 0; i < vertexNum; i++)
 	{
@@ -316,18 +178,18 @@ void ALGraph<T>::DFS_nonrec()
 {
 	int v = 0;
 	int top, j;
-	ArcNode * p;                                              //Éú³ÉÒ»¸ö±ß±í½áµãp
+	ArcNode * p;                                              //ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹p
 	for (int i = 0; i < vertexNum; i++)
 		visited[i] = 0;
 	int S[MaxSize];
-	top = -1;                                            //³õÊ¼»¯¶ÓÁĞ, ¼ÙÉèstack²ÉÓÃË³Ğò´æ´¢ÇÒ²»»á·¢ÉúÒç³ö
+	top = -1;                                            //åˆå§‹åŒ–é˜Ÿåˆ—, å‡è®¾stacké‡‡ç”¨é¡ºåºå­˜å‚¨ä¸”ä¸ä¼šå‘ç”Ÿæº¢å‡º
 	cout << adjlist[v].vertex << " ";
 	visited[v] = 1;
-	S[++top] = v; //±»·ÃÎÊ¶¥µãÈës
+	S[++top] = v; //è¢«è®¿é—®é¡¶ç‚¹å…¥s
 	while (top != -1)
 	{
 		v = S[top];
-		p = adjlist[v].firstedge;                                //±ß±íÖĞµÄ¹¤×÷Ö¸Õëp³õÊ¼»¯
+		p = adjlist[v].firstedge;                                //è¾¹è¡¨ä¸­çš„å·¥ä½œæŒ‡é’ˆpåˆå§‹åŒ–
 		while (p)
 		{
 			j = p->adjvex;
@@ -360,8 +222,8 @@ void ALGraph<T>::InverseList()
 			ArcNode*s = p;
 			int j = p->adjvex;
 			s = new ArcNode; 
-			s->adjvex = i;								//Éú³ÉÒ»¸ö±ß±í½áµãs
-			s->next = Inv[j].firstedge;             //½«½áµãs²åÈëµ½½áµãiµÄ±ß±íµÄ±íÍ·  
+			s->adjvex = i;								//ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹s
+			s->next = Inv[j].firstedge;             //å°†ç»“ç‚¹sæ’å…¥åˆ°ç»“ç‚¹içš„è¾¹è¡¨çš„è¡¨å¤´  
 			Inv[j].firstedge = s;
 			p = p->next;
 		}
@@ -373,18 +235,18 @@ bool ALGraph<T>::hasPath_DFS(int x, int y)
 {
 	int v = x;
 	int top, j;
-	ArcNode * p;                                              //Éú³ÉÒ»¸ö±ß±í½áµãp
+	ArcNode * p;                                              //ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹p
 	for (int i = 0; i < vertexNum; i++)
 		visited[i] = 0;
 	int S[MaxSize];
-	top = -1;                                            //³õÊ¼»¯¶ÓÁĞ, ¼ÙÉèstack²ÉÓÃË³Ğò´æ´¢ÇÒ²»»á·¢ÉúÒç³ö
+	top = -1;                                            //åˆå§‹åŒ–é˜Ÿåˆ—, å‡è®¾stacké‡‡ç”¨é¡ºåºå­˜å‚¨ä¸”ä¸ä¼šå‘ç”Ÿæº¢å‡º
 //	cout << adjlist[v].vertex << " ";
 	visited[v] = 1;
-	S[++top] = v; //±»·ÃÎÊ¶¥µãÈës
+	S[++top] = v; //è¢«è®¿é—®é¡¶ç‚¹å…¥s
 	while (top != -1)
 	{
 		v = S[top];
-		p = adjlist[v].firstedge;                                //±ß±íÖĞµÄ¹¤×÷Ö¸Õëp³õÊ¼»¯
+		p = adjlist[v].firstedge;                                //è¾¹è¡¨ä¸­çš„å·¥ä½œæŒ‡é’ˆpåˆå§‹åŒ–
 		while (p)
 		{
 			j = p->adjvex;
@@ -412,16 +274,16 @@ bool ALGraph<T>::hasPath_BFS(int x, int y)
 		visited[i] = 0;
 	int front, rear, j;
 	int v = x;
-	ArcNode * p;                                              //Éú³ÉÒ»¸ö±ß±í½áµãp
+	ArcNode * p;                                              //ç”Ÿæˆä¸€ä¸ªè¾¹è¡¨ç»“ç‚¹p
 	int Q[MaxSize];
-	front = rear = -1;                                            //³õÊ¼»¯¶ÓÁĞ, ¼ÙÉè¶ÓÁĞ²ÉÓÃË³Ğò´æ´¢ÇÒ²»»á·¢ÉúÒç³ö
+	front = rear = -1;                                            //åˆå§‹åŒ–é˜Ÿåˆ—, å‡è®¾é˜Ÿåˆ—é‡‡ç”¨é¡ºåºå­˜å‚¨ä¸”ä¸ä¼šå‘ç”Ÿæº¢å‡º
 //	cout << adjlist[v].vertex << " ";
 	visited[v] = 1;
-	Q[++rear] = v; //±»·ÃÎÊ¶¥µãÈë¶Ó
+	Q[++rear] = v; //è¢«è®¿é—®é¡¶ç‚¹å…¥é˜Ÿ
 	while (front != rear)
 	{
 		v = Q[++front];
-		p = adjlist[v].firstedge;                                //±ß±íÖĞµÄ¹¤×÷Ö¸Õëp³õÊ¼»¯
+		p = adjlist[v].firstedge;                                //è¾¹è¡¨ä¸­çš„å·¥ä½œæŒ‡é’ˆpåˆå§‹åŒ–
 		while (p)
 		{
 			j = p->adjvex;
