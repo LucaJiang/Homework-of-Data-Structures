@@ -24,8 +24,9 @@
 可以直接Pull requests,也可以联系我添加你的项目.
 
 **希望看到这里的各位吃水不忘挖井人,注册账号点个star再走可好!**
+
 这里的代码均在 Visual Studio 2017 书写并编译,可能无法在 dev 上正确编译.
-建议使用 Visual Studio 或者 VS Code.
+如果想学好cpp, 建议使用 Visual Studio 或者 VS Code. 
 
 
 ## 参考书目
@@ -44,6 +45,7 @@
 ## 作业目录
 * [大整数四则运算](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Large%20Integer%20Operation)
 * [约瑟夫环](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/Josephus%20Ring.cpp)
+* [中缀表达式](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/nifix%20expression)
 * [二叉树](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/BiTree/codes)
 * [引用与指针](https://github.com/LucaJiang/Homework-of-Data-Structures/blob/master/referencePointer.cpp)
 * [图](https://github.com/LucaJiang/Homework-of-Data-Structures/tree/master/Graph)
@@ -59,4 +61,3 @@
 
 ## 致谢
 特别感谢黎培兴老师的指导!
-
