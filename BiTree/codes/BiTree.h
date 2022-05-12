@@ -27,6 +27,7 @@ public:
 	void PostOrder(BiNode<T> *root);    //后序遍历二叉树
 	void LeverOrder(BiNode<T> *root);   //层序遍历二叉树
 	void PrintTree() { PrintTree(root); }
+	void ExchangeChild(BiNode<T> *root);
 	int countLeaves();
 	int pos(T, T[], int, int);   //4Creat2
 	int countNode() { int num = 0; countNode(root, num); return num; }
